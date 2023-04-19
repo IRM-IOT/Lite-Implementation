@@ -23,5 +23,5 @@
 ### Run the app
 
 ```
-    python app.py
+    python fsc-main.py
 ```
