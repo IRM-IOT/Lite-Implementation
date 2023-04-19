@@ -18,8 +18,13 @@ def extract_embedding(waveform):
     interpreter.allocate_tensors()
     interpreter.set_tensor(waveform_input_index, waveform)
     interpreter.invoke()
-    embeddings = interpreter.get_tensor(embeddings_output_index)
-    return(embeddings.shape)
+
+    # embeddings = interpreter.get_tensor(embeddings_output_index)
+    # scores  = interpreter.get_tensor(scores_output_index)
+
+    spectrogram = interpreter.get_tensor(spectrogram_output_index)
+
+    return(spectrogram)
 
 def feature_extractor(audioIndex,features):
     while True:
@@ -29,9 +34,24 @@ def feature_extractor(audioIndex,features):
 
             embedding = extract_embedding(raw_audio)
 
-            features.append([audio_name,embedding])
+            three_chanel = np.stack((embedding, embedding, embedding), axis=2)
+
+            feature = np.expand_dims(three_chanel, axis=0)
+
+            features.append([audio_name,feature])
             print("embedding for : " + str(audio_name) + " done")
         else:
             continue
 
 
+# raw_audio, sr = librosa.load("audios/audio_1.wav", sr=44100, mono=True, duration=5)
+
+# embedding = extract_embedding(raw_audio)
+
+# three_chanel = np.stack((embedding, embedding, embedding), axis=2)
+
+# print(np.shape(three_chanel))
+
+# feature = np.expand_dims(three_chanel, axis=0)
+
+# print(np.shape(feature))
