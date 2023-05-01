@@ -48,4 +48,4 @@ def write_clip(frames,name):
 # record_thread = threading.Thread(target=record_audio)
 # record_thread.start()
 
-# record_audio([])
+record_audio([])
