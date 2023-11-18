@@ -20,8 +20,12 @@
     pip3 install -r requirements.txt
 ```
 
-### Run the app
+### Run the two Python Files in 2 Terminals
 
 ```
-    python fsc-main.py
+    python fsc-recorder.py
+```
+
+```
+    python fsc-classifier.py
 ```
